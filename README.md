@@ -125,7 +125,7 @@ flutter 系统组件分两种：
 		  })
 			......
 			
-	以上列举的UI组件都继承StatelessWidget，都继承了父类StatelessWidget，这个Key就是tab事件方法，类似android中的View的SetOnClickListner()方法,
+	以上列举的UI组件都继承StatelessWidget，都继承了父类StatelessWidget，这个Key就是tap事件方法，类似android中的View的SetOnClickListner()方法,
 	
 	复杂布局需要熟悉flutter的横向布局row和纵向布局cloumn
 	
@@ -145,6 +145,10 @@ flutter 系统组件分两种：
 			  
 	
 	这个命名有没有和ios API很像？
+	
+	
+	
+	未(you)完(kong)待(zai)续(shuo)
 	
 	
 
