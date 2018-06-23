@@ -3,7 +3,7 @@
 
 .packages
 .pub/
-
+*.iml
 build/
-
+.idea/*
 .flutter-plugins
