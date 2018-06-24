@@ -148,6 +148,17 @@ flutter 系统组件分两种：
 	
 	
 	
+	5 、网络
+	
+	6、 row
+	7、 cloumn
+	
+	
+	8、截图：
+
+	![net news](./pic/flutter_net_news.png)
+	
+	
 	未(you)完(kong)待(zai)续(shuo)
 	
 	
