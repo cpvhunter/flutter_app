@@ -157,8 +157,10 @@ flutter 系统组件分两种：
 	
 	8、截图：
 
-	![net news](./pic/flutter_net_news.png)
-	
+	![net news list](./pic/flutter_net_news.png)
+
+	![net news detail](./pic/flutter_news_detail.png)
+
 	
 	未(you)完(kong)待(zai)续(shuo)
 	
