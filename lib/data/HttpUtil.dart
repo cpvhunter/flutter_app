@@ -12,38 +12,46 @@ class HttpUtil {
   final String HEADLINE_ID = "T1348647909107";
 
   Future getNews(int startPage) {
-    return getData(
+    return getResponse(
         NETEAST_HOST,
         80,
         'nc/article/headline/T1348647909107/' +
             startPage.toString() +
-            '-20.html');
+            '-20.html').then((data) {
+      List articles = data['T1348647909107'];
+//        for (var x in articles) {
+//          print(x);
+//        }
+      return articles;
+    });
   }
 
-  Future<List> getData(String host, int port, String path) async {
+  Future getNewsDetail(String id) {
+    return getResponse(
+            NETEAST_HOST, 80, 'nc/article/' + id + '/full.html')
+        .then((data) {
+      var detail = data;
+      return detail;
+    });
+  }
+
+  Future getResponse(String host, int port, String path) async {
     var httpClient = new HttpClient();
     var request = await httpClient.get(host, port, path);
     print(request.headers.toString());
     print(request.uri.toString());
     var response = await request.close();
-    print(response.headers.toString());
-    List result;
     try {
       if (response.statusCode == HttpStatus.OK) {
         var json = await response.transform(utf8.decoder).join();
         var data = jsonDecode(json);
-        List articles = data['T1348647909107'];
-//        for (var x in articles) {
-//          print(x);
-//        }
-        result = articles;
+        return data;
       } else {
-        'Error getting IP address:\nHttp status ${response.statusCode}';
+        'Error :\nHttp status ${response.statusCode}';
       }
     } catch (exception) {
       print(exception);
-      'Failed getting IP address';
+      print(exception);
     }
-    return result;
   }
 }

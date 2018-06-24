@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:isolate';
 import '../data/HttpUtil.dart' as Http;
+import '../pages/DetailPage.dart';
 
 class SampleAppPage extends State<StatefulWidget> {
   List articles;
@@ -23,7 +23,9 @@ class SampleAppPage extends State<StatefulWidget> {
       appBar: new AppBar(
         title: new Text("News App"),
         actions: <Widget>[
-          new IconButton(icon: new Icon(Icons.list), onPressed: _loadData),
+          new IconButton(icon: new Icon(Icons.list), onPressed: (){
+            //todo something
+          }),
         ],
       ),
       body: getBody(),
@@ -57,9 +59,18 @@ class SampleAppPage extends State<StatefulWidget> {
       });
 
   Widget getContainer(int i) {
+
     return new Container(
-      child: getRow(i),
+      child: new GestureDetector(
+        child: getRow(i),
+        onTap: (){
+          var article = articles[i];
+          print(article);
+          _loadData( "${articles[i]["title"]}","${articles[i]["postid"]}");
+        },
+      ),
       margin: const EdgeInsets.all(8.0),
+
     );
   }
 
@@ -71,6 +82,7 @@ class SampleAppPage extends State<StatefulWidget> {
         new Expanded(
           flex: 2,
           child: getCloumn(i),
+
         ),
         new Expanded(
           child: new Image.network(
@@ -90,23 +102,31 @@ class SampleAppPage extends State<StatefulWidget> {
 //      mainAxisAlignment: MainAxisAlignment.start,
 //      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-          new Text(
-            "${articles[i]["title"]}",
-            maxLines: 2,
-            textAlign: TextAlign.left,
-            style: new TextStyle(fontSize: 18.0, color: Colors.black),
-          ),
-          new Text(
-            "${articles[i]["source"]}",
-            maxLines: 2,
-            textAlign: TextAlign.left,
-            style: new TextStyle(fontSize: 12.0, color: Colors.black87),
-          ),
+        new Text(
+          "${articles[i]["title"]}",
+          maxLines: 2,
+          textAlign: TextAlign.left,
+          style: new TextStyle(fontSize: 18.0, color: Colors.black),
+        ),
+        new Text(
+          "${articles[i]["source"]}",
+          maxLines: 2,
+          textAlign: TextAlign.left,
+          style: new TextStyle(fontSize: 12.0, color: Colors.black87),
+        ),
       ],
     );
   }
 
 //
 
-  void _loadData() {}
+  void _loadData(String title,String id) {
+    Navigator.of(context).push(
+          new MaterialPageRoute(
+            builder: (context) {
+              return DetailPage(title,id);
+            },
+          ),
+        );
+  }
 }
