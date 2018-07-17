@@ -12,7 +12,11 @@ class SampleAppPage extends State<StatefulWidget> {
     futurn.then((value) {
       print(value);
       setState(() {
-        articles = value;
+        if (value is String) {
+
+        } else {
+          articles = value;
+        }
       });
     });
   }
@@ -23,9 +27,11 @@ class SampleAppPage extends State<StatefulWidget> {
       appBar: new AppBar(
         title: new Text("News App"),
         actions: <Widget>[
-          new IconButton(icon: new Icon(Icons.list), onPressed: (){
-            //todo something
-          }),
+          new IconButton(
+              icon: new Icon(Icons.list),
+              onPressed: () {
+                //todo something
+              }),
         ],
       ),
       body: getBody(),
@@ -59,18 +65,16 @@ class SampleAppPage extends State<StatefulWidget> {
       });
 
   Widget getContainer(int i) {
-
     return new Container(
       child: new GestureDetector(
         child: getRow(i),
-        onTap: (){
+        onTap: () {
           var article = articles[i];
           print(article);
-          _loadData( "${articles[i]["title"]}","${articles[i]["postid"]}");
+          _loadData("${articles[i]["title"]}", "${articles[i]["postid"]}");
         },
       ),
       margin: const EdgeInsets.all(8.0),
-
     );
   }
 
@@ -82,7 +86,6 @@ class SampleAppPage extends State<StatefulWidget> {
         new Expanded(
           flex: 2,
           child: getCloumn(i),
-
         ),
         new Expanded(
           child: new Image.network(
@@ -120,13 +123,13 @@ class SampleAppPage extends State<StatefulWidget> {
 
 //
 
-  void _loadData(String title,String id) {
+  void _loadData(String title, String id) {
     Navigator.of(context).push(
-          new MaterialPageRoute(
-            builder: (context) {
-              return DetailPage(title,id);
-            },
-          ),
-        );
+      new MaterialPageRoute(
+        builder: (context) {
+          return DetailPage(title, id);
+        },
+      ),
+    );
   }
 }
