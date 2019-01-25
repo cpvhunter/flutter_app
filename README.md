@@ -58,8 +58,8 @@ For help getting started with Flutter, view our online
 
 flutter 系统组件分两种：
 
-- 1、StatelessWidget 不可自定义组件
-- 2、StatefulWidget 可自定义组件
+- 1、StatelessWidget 静态组件，只渲染一次
+- 2、StatefulWidget 动态组件，有自己的state，可实时刷新state触发rebuild
 
 	个人理解 StatelessWidget是运行时不可动态改变属性的组件，StatefulWidget是运行时可以动态调整的组件。
 	
